@@ -117,7 +117,7 @@ export default function JobPostingPage() {
   };
 
   return (
-    <div className="flex flex-col items-center min-h-screen w-full p-2 overflow-x-hidden bg-amber-500"> {/* Ensure min-w-screen is not needed if w-full and overflow-x-hidden are effective */}
+    <div className="flex flex-col items-center min-h-screen w-full p-2 overflow-x-hidden bg-white"> {/* Ensure min-w-screen is not needed if w-full and overflow-x-hidden are effective */}
         <div className="flex flex-col items-center w-full max-w-4xl p-4 bg-white rounded-lg shadow-lg my-8"> {/* Added my-8 for top/bottom margin */}
 
            <form onSubmit={handleSubmit} className="w-full max-w-2xl space-y-4">
@@ -217,8 +217,8 @@ export default function JobPostingPage() {
             </div>
 
             <div className="mb-4">
-              <label htmlFor="contact_information" className="block text-sm font-medium text-gray-700">Contact Information for Inquiries (Optional)</label>
-              <input type="text" id="contact_information" name="contact_information" value={formData.contact_information} onChange={handleChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" />
+              <label htmlFor="contact_information" className="block text-sm font-medium text-gray-700">Contact Information for Inquiries( HR representative mail)</label>
+              <input type="text" id="contact_information" name="contact_information" value={formData.contact_information} onChange={handleChange} className="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:ring-blue-500 focus:border-blue-500" required  />
             </div>
 
          
@@ -226,7 +226,7 @@ export default function JobPostingPage() {
             {error && <p className="text-red-500 text-sm">{error}</p>}
             {successMessage && <p className="text-green-500 text-sm">{successMessage}</p>}
             
-            <button type="submit" disabled={isLoading} className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-md transition duration-200 text-lg disabled:bg-gray-400">
+            <button type="submit" disabled={isLoading} className="w-full bg-black hover:bg-sky-600 text-white font-bold py-3 px-4 rounded-md transition duration-200 text-lg disabled:bg-gray-400">
               {isLoading ? 'Submitting...' : 'Post Job'}
             </button>
           </form>

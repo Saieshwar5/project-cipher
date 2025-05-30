@@ -29,7 +29,7 @@ export default function LoginPage() {
   // Redirect if user is already logged in
   useEffect(() => {
     if (currentUser) {
-      router.push("/"); // Or to dashboard
+      router.push("/users/dashboard"); // Or to dashboard
     }
   }, [currentUser, router]);
 
@@ -48,7 +48,7 @@ export default function LoginPage() {
 
     const user = await signInWithEmail(email, password);
     if (user) {
-      // router.push("/"); // onAuthStateChanged in context or useEffect above will handle redirect
+      router.push("/users/dashboard"); // Redirect to dashboard or users page
     } else {
       // Error is set in context, useEffect will pick it up
       // Or you can set a more specific local error if needed
@@ -63,7 +63,7 @@ export default function LoginPage() {
     
     const user = await signInWithGoogle();
     if (user) {
-       router.push("/users"); // onAuthStateChanged in context or useEffect above will handle redirect
+       router.push("/users/dashboard"); // onAuthStateChanged in context or useEffect above will handle redirect
     } else {
       // Error is set in context
     }

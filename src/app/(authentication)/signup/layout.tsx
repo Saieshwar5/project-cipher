@@ -5,15 +5,12 @@ export default function RootLayout({
 }>) {
 
   return (
-    <html lang="en">
-      <body
-      >
+    
 
         <div className="w-full overflow-x-hidden">
             {children}
         </div>
          
-      </body>
-    </html>
+     
   );
 }

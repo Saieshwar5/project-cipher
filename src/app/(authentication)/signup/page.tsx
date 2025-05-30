@@ -93,7 +93,7 @@ export default function SignUpPage() {
     setGoogleFormLoading(true);
     const user = await signInWithGoogle();
     if (user) {
-      router.push("/users"); 
+      router.push("/users/dashboard"); // Redirect to dashboard or users page
     } else {
       // Error is set in context
     }
@@ -116,7 +116,7 @@ export default function SignUpPage() {
 
         if (refreshedUser && refreshedUser.emailVerified) {
           setVerificationMessage("Email verified successfully! Redirecting...");
-          router.push("/"); 
+          router.push("/users/dashboard"); // Redirect to dashboard or users page
         } else {
           setVerificationMessage("Email not yet verified. Please ensure you've clicked the link in your email and try again.");
         }

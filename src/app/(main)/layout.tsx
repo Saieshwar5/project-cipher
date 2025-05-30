@@ -19,7 +19,7 @@ export default function RootLayout({
         
            <div className="flex flex-col items-center  min-h-screen min-w-screen  p-1 gap-2 scroll-auto">
           <header className="flex flex-row space-between w-full  h-[10vh] "  >
-              <Header loggedStatus={false} />
+              <Header />
           </header>
 
           <main className="flex  flex-auto flex-col items-center justify-center w-full p-8">

@@ -1,33 +1,47 @@
 
 "use client";
 
-import {useState ,useEffect, use } from "react";
+import {useState ,useEffect,} from "react";
+
+import {useRouter} from "next/navigation";
+import Link from "next/link";
+ 
+
+import { useAuth } from "@/app/context/AuthContext";
 
 interface HeaderProps {
   loggedStatus?: boolean;
 }
 
 
+export default function Header()  {
+
+   const { currentUser, logout } = useAuth();
+  const router = useRouter();
 
 
 
 
-
-
-export default function Header({ loggedStatus}: HeaderProps)  {
 
   const [isOpen, setIsOpen] = useState(false);
      
- useEffect(() => {
-    // If loggedStatus is undefined (e.g., not passed), default to false
-    setIsOpen(loggedStatus ?? false);
-  }, [loggedStatus]); 
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      setIsOpen(false); // Close the menu after logout
+      router.push("/"); // Redirect to home or login page after logout
+
+    } catch (error) {
+      console.error("Logout failed:", error);
+    }
+
+  }
 
       
-     
        return (
 
-          <>
+          <div className="flex flex-row space-between w-full  h-[10vh] ">
             <div className="flex flex-row space-between w-[20%] h-full ml-1" >
             <img src="/cypher.jpeg" alt="Cypher Logo" className="h-16 w-auto" />
             </div>
@@ -37,24 +51,33 @@ export default function Header({ loggedStatus}: HeaderProps)  {
 
             <div className="flex flex-row space-between w-[25%] h-full">
 
-                 {isOpen? (
-                               <ul className="flex flex-row space-x-4 items-center w-full h-full p-4">
+                 {currentUser? (
+                               <ul className="flex flex-row space-x-4 items-center justify-end  w-full h-full p-4">
 
-                            <li className="text-white transition-all hover:scale-105 active:scale-95 px-8 py-3 bg-slate-900 rounded-[25px] border border-blue-500 cursor-pointer ml-auto mr-4">
-                              <a href="/about" className="block w-full h-full">LogOut</a>
+                            <li>
+                              <button onClick={handleLogout} className="text-white transition-all hover:scale-105 active:scale-95 px-8 py-3 bg-slate-900 rounded-[25px] border border-blue-500 cursor-pointer ml-auto mr-4" >
+                                          LogOut
+                              </button>
                             </li>
 
                       </ul>
 
                  ) : (
 
-                   <ul className="flex flex-row space-x-4 items-center w-full h-full p-4">
-                  <li className="text-white transition-all hover:scale-105 active:scale-95 px-8 py-3 bg-slate-900 rounded-[25px] border border-blue-500 cursor-pointer">
-                    <a href="/" className="block w-full h-full">LogIn</a>
+                   <ul className="flex flex-row space-x-4 items-center justify-end w-full h-full p-4">
+
+                  <li >
+                     <Link href="/login" className="text-white transition-all hover:scale-105 active:scale-95 px-6 py-2 bg-slate-900 rounded-[25px] border border-blue-500 cursor-pointer block">
+                  LogIn 
+                    </Link>
                   </li>
-                  <li className="text-white transition-all hover:scale-105 active:scale-95 px-8 py-3 bg-slate-900 rounded-[25px] border border-blue-500 cursor-pointer">
-                    <a href="/signup" className="block w-full h-full">SignUp</a>
-                  </li>      </ul>  
+                  <li >
+                    <Link href="/signup" className="text-white transition-all hover:scale-105 active:scale-95 px-6 py-2 bg-slate-900 rounded-[25px] border border-blue-500 cursor-pointer block">
+                  SignUp
+                      </Link>
+                  </li>     
+                  
+                   </ul>  
                  )
                 
                 
@@ -71,7 +94,7 @@ export default function Header({ loggedStatus}: HeaderProps)  {
           
           
           
-          </>
+          </div>
 
 
 
