@@ -7,6 +7,7 @@ import "./globals.css";
 
 
 import { AuthProvider } from "./context/AuthContext";
+import { CompanyProvider } from "./context/companyContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,9 +36,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
       <AuthProvider>
+      <CompanyProvider>
         <div className="w-full overflow-x-hidden">
             {children}
         </div>
+      </CompanyProvider>
       </AuthProvider>
          
       </body>

@@ -69,7 +69,7 @@ export default function JobPostingPage() {
     setError(null);
     setSuccessMessage(null);    try {
       // Submit to our Next.js API route
-      const response = await fetch('/api/jobs', {
+      const response = await fetch('http://localhost:3001/users/jobposting', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -83,7 +83,7 @@ export default function JobPostingPage() {
       }
 
       const result = await response.json();
-      setSuccessMessage('Job posting created successfully! ID: ' + result.job.id);
+      setSuccessMessage( result.message || 'Job posting created successfully!');
       // Reset the form using snake_case keys
       setFormData({
         job_title: "",
